@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+    body {
+        background: grey;
+    }
+
+    div {
+        clear: both;
+    }
+
+    ul.nav {
+        margin-left: 0;
+        padding: 10px;
+        display: block;
+        clear:both;
+
+    }
+    li.main span {
+        display: block;
+        background: yellow;
+        cursor: pointer;
+    }
+    li.main {
+        width: 180px;
+        display: block;
+        float: left;
+        list-style: none;
+        margin: 3px;
+    }
+    ul.child {
+        position: absolute;
+        display: none;
+        background: #fff;
+        box-shadow: #000 0 0 5px;
+        padding: 10px;
+        list-style: none;
+    }
+    ul.child {
+        cursor: pointer;
+    }
+    ul.child li:hover {
+        color: red;
+    }
+</style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('li.main').hover(
+                function() {
+                    $('.child', this).slideDown();
+                },
+                function () {
+                    $('.child', this).slideUp();
+                }
+            );
+        });
+    </script>
+</head>
+<body>
+
+<h1>Unsere Firma</h1>
+<hr>
+
+
+<ul class="nav">
+    <li class="main">
+        <span>Produkte</span>
+        <ul class="child">
+            <li>Fotoapparate</li>
+            <li>Linsen</li>
+            <li>Objektive</li>
+            <li>Projektoren</li>
+        </ul>
+    </li>
+    <li class="main">
+        <span>&Uuml;bersicht</span>
+        <ul class="child">
+            <li>Verkauf</li>
+            <li>Ankauf</li>
+            <li>Verarbeitung</li>
+            <li>Vertrieb</li>
+        </ul>
+    </li>
+</ul>
+
+<div>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+</div>
+</body>
+</html>
