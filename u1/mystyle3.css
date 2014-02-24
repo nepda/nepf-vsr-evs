@@ -1,0 +1,62 @@
+
+body, html {
+    background-color: lightblue;
+    z-index: 2;
+}
+
+h1 {
+    color: blueviolet;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 6;
+
+}
+
+table {
+    border-color: grey;
+    border-width: 1px;
+    border-style: outset;
+    z-index: 6;
+}
+table tr, table td {
+    border: 1px inset grey;
+}
+
+.left {
+    margin-top: 60px;
+    float:left;
+    width: 180px;
+    color: mediumvioletred;
+    z-index: 6;
+}
+
+.haupttext {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 200px;
+    z-index: 6;
+}
+
+.shadow_over {
+    font-size: 100pt;
+    color: #5e66ff;
+    font-weight: bold;
+    font-family: sans-serif;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    z-index: 2;
+}
+.shadow_under {
+    font-size: 100pt;
+    color: #ffb491;
+    font-weight: bold;
+    font-family: sans-serif;
+    position: absolute;
+    top: 40.5%;
+    left: 40.2%;
+    z-index: 1;
+}
