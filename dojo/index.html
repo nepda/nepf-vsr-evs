@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Kreise 4</title>
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.9.1/dijit/themes/soria/soria.css"/>
+    <script type="text/javascript">dojoConfig = {async: true, gfxRenderer: "svg,silverlight,vml"}</script>
+    <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.9.1/dojo/dojo.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var berechne_kanten = null;
+
+        require(["dojox/gfx", "dojox/gfx/Moveable", "dojo/on", 'dojo/dom', "dojo/domReady!"],
+                function(gfx, Moveable, on, dom){
+
+                    var surface_size = {width: 500, height: 500};
+
+                    dom.byId('zeichenflaeche').setAttribute('style', 'border: 1px solid red; width: ' + surface_size.width + 'px; height: ' + surface_size.width + 'px');
+
+                    var surface = gfx.createSurface("zeichenflaeche", surface_size.width, surface_size.height);
+
+                    var kreis_anzahl = 10;
+                    var kanten_anzahl = 11;
+                    var kreisradius = 15;
+                    var aufstellradius = 120.0;
+                    var gesamtbreite = 400.0;
+                    var gesamthoehe = 400.0;
+                    var mittx = gesamtbreite / 2.0;
+                    var mitty = gesamthoehe / 2.0;
+
+                    var kreise={};
+                    var kanten={};
+                    var linien={};
+
+                    kanten[0] = [0, 1];
+                    kanten[1] = [1, 2];
+                    kanten[2] = [5, 8];
+                    kanten[3] = [2, 4];
+                    kanten[4] = [3, 7];
+                    kanten[5] = [5, 9];
+                    kanten[6] = [6, 8];
+                    kanten[7] = [4, 9];
+                    kanten[8] = [5, 6];
+                    kanten[9] = [6, 7];
+                    kanten[10] = [7, 9];
+
+                    berechne_kanten = function (remove){
+                        for (i = 0; i < kanten_anzahl; i++) {
+                            xx1 = kreise[kanten[i][0]].getTransformedBoundingBox()[0].x+kreisradius;
+                            xx2 = kreise[kanten[i][1]].getTransformedBoundingBox()[0].x+kreisradius;
+                            yy1 = kreise[kanten[i][0]].getTransformedBoundingBox()[0].y+kreisradius;
+                            yy2 = kreise[kanten[i][1]].getTransformedBoundingBox()[0].y+kreisradius;
+                            if (remove) {
+                                linien[i].removeShape();
+                            }
+                            linien[i]=surface.createLine({x1:xx1,x2:xx2,y1:yy1,y2:yy2})
+                                    .setStroke({color:[80,0,100,1],width:2})
+                            ;
+                        }
+                    }
+
+                    function erzeugeNetz() {
+                        for (i = 0; i < kreis_anzahl; i++) {
+                            var alpha = 2 * Math.PI * i / kreis_anzahl;
+                            var xx = mittx + aufstellradius * Math.cos(alpha);
+                            var yy = mitty + aufstellradius * Math.sin(alpha);
+                            kreise[i]=surface.createCircle({cx:xx,cy:yy,r:kreisradius})
+                                    .setFill("red")
+                                    .setStroke({color:"blue",width:2})
+                            ;
+                            new dojox.gfx.Moveable(kreise[i]);
+                            // on(kreise[i], "mouseup", function(e) {berechne_kanten(1);});
+                            on(kreise[i], "mousemove", function(e) {berechne_kanten(1);});
+                        }
+                        berechne_kanten(0);
+                    }
+
+                    erzeugeNetz();
+                });
+    </script>
+
+</head>
+<body>
+
+    <h1>Verschiebliche Kreise</h1>
+    <h2>(An den Kreisen ziehen)</h2>
+    <hr/>
+    <div id="zeichenflaeche" style="width: 400px; height: 400px; border: 1px dashed red;"></div>
+
+</body>
+</html>
